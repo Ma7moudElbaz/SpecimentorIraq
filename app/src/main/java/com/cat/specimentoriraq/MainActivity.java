@@ -24,17 +24,11 @@ public class MainActivity extends AppCompatActivity {
         btn_sec5.setOnClickListener(v -> navigateToSecDetailsActivity(5));
         btn_sec6.setOnClickListener(v -> navigateToSecDetailsActivity(6));
         btn_sec7.setOnClickListener(v -> navigateToSecDetailsActivity(7));
-        btn_sec8.setOnClickListener(v -> navigateToSecDetailsActivity(8));
+        btn_sec8.setOnClickListener(v -> navigateToSec8DetailsActivity(8));
         btn_sec9.setOnClickListener(v -> navigateToSecDetailsActivity(9));
         btn_sec10.setOnClickListener(v -> navigateToSecDetailsActivity(10));
         btn_sec11.setOnClickListener(v -> navigateToSecDetailsActivity(11));
         btn_sec12.setOnClickListener(v -> navigateToSecDetailsActivity(12));
-//        btn_sec1.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec1Activity.class)));
-//        btn_sec2.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec2Activity.class)));
-//        btn_sec3.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec3Activity.class)));
-//        btn_sec4.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec4Activity.class)));
-//        btn_sec5.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec5Activity.class)));
-//        btn_sec6.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),Sec6Activity.class)));
     }
 
     private void initFields() {
@@ -56,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToSecDetailsActivity(int secNo){
         Intent i = new Intent(getBaseContext(), SecDetailsActivity.class);
+        i.putExtra("sec_no",secNo);
+        startActivity(i);
+    }
+
+    private void navigateToSec8DetailsActivity(int secNo){
+        Intent i = new Intent(getBaseContext(), Sec8Activity.class);
         i.putExtra("sec_no",secNo);
         startActivity(i);
     }

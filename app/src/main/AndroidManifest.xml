@@ -17,6 +17,9 @@
             android:exported="false" />
 
         <activity
+            android:name=".Sec8Activity"
+            android:exported="false" />
+        <activity
             android:name=".ReferencesActivity"
             android:exported="false" />
         <activity
