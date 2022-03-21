@@ -15,9 +15,8 @@
         <activity
             android:name=".ReadMoreActivity"
             android:exported="false" />
-
         <activity
-            android:name=".Sec8Activity"
+            android:name=".SecDetailsCustomActivity"
             android:exported="false" />
         <activity
             android:name=".ReferencesActivity"

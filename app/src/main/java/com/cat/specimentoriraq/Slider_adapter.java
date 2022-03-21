@@ -45,8 +45,8 @@ public class Slider_adapter extends CardSliderAdapter<Slider_adapter.MViewHolder
         }
 
         holder.read_more.setOnClickListener(v -> {
-            Intent i = new Intent(mContext,ReadMoreActivity.class);
-            i.putExtra("sec_no",sectionNo);
+            Intent i = new Intent(mContext, ReadMoreActivity.class);
+            i.putExtra("sec_no", sectionNo);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(i);
         });

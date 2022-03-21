@@ -17,18 +17,18 @@ public class MainActivity extends AppCompatActivity {
         initFields();
         btn_abb.setOnClickListener(v -> startActivity(new Intent(getBaseContext(),AbbreviationsActivity.class)));
         btn_ref.setOnClickListener(v -> startActivity(new Intent(getBaseContext(), ReferencesActivity.class)));
-        btn_sec1.setOnClickListener(v -> navigateToSecDetailsActivity(1));
-        btn_sec2.setOnClickListener(v -> navigateToSecDetailsActivity(2));
-        btn_sec3.setOnClickListener(v -> navigateToSecDetailsActivity(3));
-        btn_sec4.setOnClickListener(v -> navigateToSecDetailsActivity(4));
-        btn_sec5.setOnClickListener(v -> navigateToSecDetailsActivity(5));
-        btn_sec6.setOnClickListener(v -> navigateToSecDetailsActivity(6));
-        btn_sec7.setOnClickListener(v -> navigateToSecDetailsActivity(7));
-        btn_sec8.setOnClickListener(v -> navigateToSec8DetailsActivity(8));
-        btn_sec9.setOnClickListener(v -> navigateToSecDetailsActivity(9));
-        btn_sec10.setOnClickListener(v -> navigateToSecDetailsActivity(10));
-        btn_sec11.setOnClickListener(v -> navigateToSecDetailsActivity(11));
-        btn_sec12.setOnClickListener(v -> navigateToSecDetailsActivity(12));
+        btn_sec1.setOnClickListener(v -> navigateToSecDetailsCustomActivity(1,1,false));
+        btn_sec2.setOnClickListener(v -> navigateToSecDetailsCustomActivity(2,3,false));
+        btn_sec3.setOnClickListener(v -> navigateToSecDetailsCustomActivity(3,3,false));
+        btn_sec4.setOnClickListener(v -> navigateToSecDetailsCustomActivity(4,2,false));
+        btn_sec5.setOnClickListener(v -> navigateToSecDetailsCustomActivity(5,2,false));
+        btn_sec6.setOnClickListener(v -> navigateToSecDetailsCustomActivity(6,2,true));
+        btn_sec7.setOnClickListener(v -> navigateToSecDetailsCustomActivity(7,2,true));
+        btn_sec8.setOnClickListener(v -> navigateToSecDetailsCustomActivity(8,4,true));
+        btn_sec9.setOnClickListener(v -> navigateToSecDetailsCustomActivity(9,4,true));
+        btn_sec10.setOnClickListener(v -> navigateToSecDetailsCustomActivity(10,2,true));
+        btn_sec11.setOnClickListener(v -> navigateToSecDetailsCustomActivity(11,1,true));
+        btn_sec12.setOnClickListener(v -> navigateToSecDetailsCustomActivity(12,1,false));
     }
 
     private void initFields() {
@@ -54,9 +54,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void navigateToSec8DetailsActivity(int secNo){
-        Intent i = new Intent(getBaseContext(), Sec8Activity.class);
+    private void navigateToSecDetailsCustomActivity(int secNo,int slideLength,boolean hasReadMore){
+        Intent i = new Intent(getBaseContext(), SecDetailsCustomActivity.class);
         i.putExtra("sec_no",secNo);
+        i.putExtra("slider_length",slideLength);
+        i.putExtra("hasReadMore",hasReadMore);
         startActivity(i);
     }
+
 }
