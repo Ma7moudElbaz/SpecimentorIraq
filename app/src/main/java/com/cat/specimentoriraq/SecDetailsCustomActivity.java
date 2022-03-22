@@ -14,9 +14,9 @@ import android.widget.RadioGroup;
 
 public class SecDetailsCustomActivity extends AppCompatActivity {
 
-    ImageView back,imgTitle, imgContent, imgMore;
+    ImageView back, imgTitle, imgContent, imgMore;
     int currentSliderPosition = 1;
-    int sliderLength,sectionNo;
+    int sliderLength, sectionNo;
     boolean hasReadMore;
     RadioGroup radioGroup;
 
@@ -33,15 +33,21 @@ public class SecDetailsCustomActivity extends AppCompatActivity {
             i.putExtra("sec_no", sectionNo);
             startActivity(i);
         });
-        setSliderImage(currentSliderPosition);
+
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            View radioButton = radioGroup.findViewById(checkedId);
+            int index = radioGroup.indexOfChild(radioButton);
+            currentSliderPosition = index + 1;
+            setSliderImage(currentSliderPosition);
+        });
+
         imgContent.setOnTouchListener(new OnSwipeTouchListener(this) {
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
                 if (currentSliderPosition != 1) {
                     currentSliderPosition--;
-                    setSliderImage(currentSliderPosition);
-                    ((RadioButton)radioGroup.getChildAt(currentSliderPosition-1)).setChecked(true);
+                    ((RadioButton) radioGroup.getChildAt(currentSliderPosition - 1)).setChecked(true);
                 }
             }
 
@@ -50,41 +56,38 @@ public class SecDetailsCustomActivity extends AppCompatActivity {
                 super.onSwipeLeft();
                 if (currentSliderPosition != sliderLength) {
                     currentSliderPosition++;
-                    setSliderImage(currentSliderPosition);
-                    ((RadioButton)radioGroup.getChildAt(currentSliderPosition-1)).setChecked(true);
+                    ((RadioButton) radioGroup.getChildAt(currentSliderPosition - 1)).setChecked(true);
                 }
             }
         });
-
     }
 
     private void initFields() {
-        sectionNo=getIntent().getIntExtra("sec_no",0);
-        sliderLength=getIntent().getIntExtra("slider_length",0);
-        hasReadMore=getIntent().getBooleanExtra("hasReadMore",false);
+        sectionNo = getIntent().getIntExtra("sec_no", 0);
+        sliderLength = getIntent().getIntExtra("slider_length", 0);
+        hasReadMore = getIntent().getBooleanExtra("hasReadMore", false);
         back = findViewById(R.id.back);
         imgTitle = findViewById(R.id.imgTitle);
         imgContent = findViewById(R.id.imgContent);
         imgMore = findViewById(R.id.imgMore);
         radioGroup = findViewById(R.id.radioGroup);
-        addRadioButtons(sliderLength);
         setTitleImage();
+        addRadioButtons(sliderLength);
+        setSliderImage(currentSliderPosition);
     }
 
-
     private void setTitleImage() {
-        String variableValue = "sec"+sectionNo+"_title";
+        String variableValue = "sec" + sectionNo + "_title";
         imgTitle.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
     }
 
-
     private void setSliderImage(int currentSliderPosition) {
-        String variableValue = "sec"+sectionNo+"_slider_" + currentSliderPosition;
+        String variableValue = "sec" + sectionNo + "_slider_" + currentSliderPosition;
         imgContent.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
 
-        if (currentSliderPosition == sliderLength && hasReadMore){
+        if (currentSliderPosition == sliderLength && hasReadMore) {
             imgMore.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             imgMore.setVisibility(View.GONE);
         }
     }
@@ -99,10 +102,6 @@ public class SecDetailsCustomActivity extends AppCompatActivity {
             rdbtn.setText("     ");
             radioGroup.addView(rdbtn);
         }
-
-
-        ((RadioButton)radioGroup.getChildAt(0)).setChecked(true);
+        ((RadioButton) radioGroup.getChildAt(0)).setChecked(true);
     }
-
-
 }
